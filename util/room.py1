@@ -1,0 +1,18 @@
+RESULT_TITLE = 'title'
+RESULT_NUM = 'number'
+RESULT_TYPE = 'type'
+RESULT_WAGER = 'wager'
+RESULT_STATU = 'roomstatus'
+RESULT_MEMBERS = 'members'
+
+STATUS_WAITING = 1
+STATUS_STARTED = 2
+
+class Room:
+	roomstatus = None;
+	title = None;
+	number = None;
+	types = None;
+	wager = None;
+	status = None;
+	members = [];
