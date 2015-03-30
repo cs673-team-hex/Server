@@ -18,6 +18,7 @@ def verify(username, password):
 	except (MultipleResultsFound, NoResultFound) as e:
 		log.warning('login: query user fail;\t'+str(e))
 		return None
+	log.info('login: successful; userid:%d, username:%s, password:%s'%{user.user_id,username,password})
 	return None
 
 def login(data):

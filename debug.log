@@ -63,3 +63,100 @@ WARNING:root:2015-03-22 19:10:38	recharge: information invalid
 WARNING:root:2015-03-22 19:15:26	recharge: user not found;	No row was found for one()
 WARNING:root:2015-03-22 19:15:26	recharge: information invalid
 WARNING:root:2015-03-22 20:38:48	recordhistory: information invalid
+WARNING:root:2015-03-29 19:03:02	createroom: creator id error;	No row was found for one()
+WARNING:root:2015-03-29 19:03:02	createroom: create room failed
+WARNING:root:2015-03-29 19:03:38	createroom: creator id error;	No row was found for one()
+WARNING:root:2015-03-29 19:03:38	createroom: create room failed
+WARNING:root:2015-03-29 19:05:20	createroom: creator id error;	No row was found for one()
+WARNING:root:2015-03-29 19:05:20	createroom: create room failed
+WARNING:root:2015-03-29 19:06:23	createroom: creator id error;	No row was found for one()
+WARNING:root:2015-03-29 19:06:23	createroom: create room failed
+WARNING:root:2015-03-29 19:07:39	createroom: creator id error;	No row was found for one()
+WARNING:root:2015-03-29 19:07:39	createroom: create room failed
+WARNING:root:2015-03-29 19:09:01	createroom: creator id error;	No row was found for one()
+WARNING:root:2015-03-29 19:09:01	createroom: create room failed
+WARNING:root:2015-03-29 19:14:53	createroom: creator id error;	No row was found for one()
+WARNING:root:2015-03-29 19:14:53	createroom: create room failed
+WARNING:root:2015-03-29 19:17:09	createroom: creator id error;	No row was found for one()
+WARNING:root:2015-03-29 19:17:09	createroom: create room failed
+INFO:root:2015-03-29 19:17:09	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:17:44	createroom: creator id error;	No row was found for one()
+WARNING:root:2015-03-29 19:17:44	createroom: create room failed
+INFO:root:2015-03-29 19:17:44	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:21:15	createroom: successful; roomid:100000
+WARNING:root:2015-03-29 19:21:15	roomlist: page number exceeded; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:22:11	createroom: successful; roomid:100000
+WARNING:root:2015-03-29 19:23:26	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:23:26	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:25:51	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:25:51	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:26:29	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:26:29	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:26:29	quitroom: information invalid
+INFO:root:2015-03-29 19:26:29	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:28:38	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:28:38	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:28:38	quitroom: information invalid
+INFO:root:2015-03-29 19:28:38	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:29:24	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:29:24	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:29:24	quitroom: information invalid
+INFO:root:2015-03-29 19:29:24	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:30:50	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:30:50	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:30:50	quitroom: information invalid
+INFO:root:2015-03-29 19:30:50	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:31:14	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:31:14	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:31:14	quitroom: missing parameters
+INFO:root:2015-03-29 19:31:14	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:31:26	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:31:26	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:31:26	quitroom: information invalid
+INFO:root:2015-03-29 19:31:26	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:32:23	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:32:23	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:34:28	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:34:28	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:35:09	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:35:09	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:35:09	quitroom: cannot find room type; roomid:100000
+INFO:root:2015-03-29 19:35:09	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:36:15	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:36:15	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:36:15	quitroom: cannot find room type; roomid:100000
+INFO:root:2015-03-29 19:36:15	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:40:05	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:40:05	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:40:05	quitroom: cannot find room type; roomid:100000
+INFO:root:2015-03-29 19:40:05	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:40:47	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:40:47	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:40:47	quitroom: cannot find room type; roomid:100000
+INFO:root:2015-03-29 19:40:47	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:41:16	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:41:16	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:41:16	quitroom: cannot find room type; roomid:100000
+INFO:root:2015-03-29 19:41:16	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:42:22	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:42:22	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:42:22	quitroom: cannot find room type; roomid:100000
+INFO:root:2015-03-29 19:42:22	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:44:36	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:44:36	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:44:36	quitroom: cannot find room type; roomid:100000
+INFO:root:2015-03-29 19:44:36	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:45:16	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:45:16	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:48:04	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:48:04	roomlist: successful; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:48:49	createroom: successful; roomid:100000
+INFO:root:2015-03-29 19:48:49	roomlist: successful; page:1, num:10, types:1
+INFO:root:2015-03-29 19:48:49	quitroom: successful; roomid:100000, userid:1
+WARNING:root:2015-03-29 19:48:49	roomlist: page number exceeded; page:1, num:10, types:1
+WARNING:root:2015-03-29 19:49:43	createroom: successful; roomid:100000
+WARNING:root:2015-03-29 19:49:43	createroom: successful; roomid:100001
+WARNING:root:2015-03-29 19:49:43	createroom: successful; roomid:100002
+INFO:root:2015-03-29 19:49:43	roomlist: successful; page:1, num:10, types:1
+INFO:root:2015-03-29 19:49:43	quitroom: successful; roomid:100000, userid:1
+INFO:root:2015-03-29 19:49:43	roomlist: successful; page:1, num:10, types:1

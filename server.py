@@ -11,6 +11,7 @@ Simple echo server, using nonblocking I/O
 from OpenSSL import SSL
 import sys, os, select, socket
 import handler
+import log
 
 def verify_cb(conn, cert, errnum, depth, ok):
     # This obviously has to be updated
@@ -65,16 +66,17 @@ while 1:
         if cli == server:
             cli,addr = server.accept()
             print 'Connection from %s' % (addr,)
-            clients[cli] = addr
+            clients[cli] = (addr,0)
 
         else:
             try:
-                ret = cli.recv(1024)
-                print ret
-		print ret
-		# do remember add \n at end of string!!!!!!!!!!!!!!!!
-		ret = handler.handle_data(ret)+'\n'
-		print ret
+                req = cli.recv(1024)
+                log.info('Receive request: '+req)
+                ret,userid = handler.handle_data(req, clients[cli][1])
+                if clients[cli][1] != userid:
+                    log.info('User session change: from '+clients[cli][1]+' to '+userid)
+                    clients[cli][1] = userid
+                log.info('Send response: '+ret)
             except (SSL.WantReadError, SSL.WantWriteError, SSL.WantX509LookupError):
                 pass
             except SSL.ZeroReturnError:
@@ -84,7 +86,8 @@ while 1:
             else:
                 if not writers.has_key(cli):
                     writers[cli] = ''
-                writers[cli] = writers[cli] + ret
+                # do remember add \n at end of string!!!!!!!!!!!!!!!!
+                writers[cli] = writers[cli] + ret + '\n'
 
     for cli in w:
         try:
