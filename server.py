@@ -74,8 +74,8 @@ while 1:
                 log.info('Receive request: '+req)
                 ret,userid = handler.handle_data(req, clients[cli][1])
                 if clients[cli][1] != userid:
-                    log.info('User session change: from '+clients[cli][1]+' to '+userid)
-                    clients[cli][1] = userid
+                    log.info('User session change: from %d to %d'%(clients[cli][1],userid))
+                    clients[cli] = (clients[cli][0],userid)
                 log.info('Send response: '+ret)
             except (SSL.WantReadError, SSL.WantWriteError, SSL.WantX509LookupError):
                 pass

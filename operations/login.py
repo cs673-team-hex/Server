@@ -8,7 +8,7 @@ INFO_PASSWORD = 'passwd'
 
 
 def verify(username, password):
-	if not (isinstance(username,int) and isinstance(password,unicode) and len(password)==32):
+	if not (isinstance(username,unicode) and isinstance(password,unicode) and len(password)==32):
 		log.warning('login: information invalid')
 		return None
 	try:
@@ -23,6 +23,7 @@ def verify(username, password):
 
 def login(data):
 	statu = constant.STATUS_SUCCESS
+	userid = 0
 	result = {}
 	username = None
 	password = None
@@ -32,11 +33,12 @@ def login(data):
 	else:
 		log.warning('login: missing parameters')
 		statu = constant.STATUS_PARAMETER_UNMATCHED
-		return statu,result
+		return statu,result,userid
 	user = verify(username, password)
 	if not user:
 		log.warning('login: information invalid')
 		statu = constant.STATUS_INFORMATION_INVALID
-		return statu,result
-	return statu, user.toDict()
+		return statu,result,userid
+	userid = user.user_id
+	return statu, user.toDict(),userid
 	

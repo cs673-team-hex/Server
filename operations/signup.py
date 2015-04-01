@@ -16,9 +16,10 @@ def verify(username, password, nickname):
 		session.add(new_user)
 		session.commit()
 	except Exception as e:
+		session.rollback()
 		log.warning('signup: insert user fail;\t'+str(e))
 		return None
-	log.info('signup: successful; userid:%d, username:%s, password:%s'%{new_user.user_id,username,password})
+	log.info('signup: successful; userid:%d, username:%s, password:%s'%(new_user.user_id,username,password))
 	return new_user
 
 def signup(data):

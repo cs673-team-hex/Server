@@ -8,6 +8,11 @@ RESULT_ROOMS = 'rooms'
 
 def getRoomList(page, num, types):
 	rooms = []
+	if roommanager.isEmpty(types):
+		return None
+	if not roommanager.verifyPage(page,num,types):
+		log.warning('roomlist: page number exceeded; page:%d, num:%d, types:%d'%(page,num,types))
+		return None
 	for room in roommanager.getRoomList(page, num, types):
 		rooms.append(room.toListDict())
 	log.info('roomlist: successful; page:%d, num:%d, types:%d'%(page,num,types))
@@ -17,9 +22,6 @@ def getRoomList(page, num, types):
 def verify(page, num, types):
 	if not (isinstance(page,int) and isinstance(num,int) and types in constant.GAME_TYPES):
 		log.warning('roomlist: information invalid')
-		return False
-	if not roommanager.verifyPage(page,num,types):
-		log.warning('roomlist: page number exceeded; page:%d, num:%d, types:%d'%(page,num,types))
 		return False
 	return True
 
@@ -40,4 +42,7 @@ def roomlist(data):
 	if not verify(page, num, types):
 		statu = constant.STATUS_INFORMATION_INVALID
 		return statu,result
-	return statu, getRoomList(page, num, types)
+	rooms = getRoomList(page, num, types)
+	if not rooms:
+		return statu, result
+	return statu, rooms

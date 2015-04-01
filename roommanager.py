@@ -30,23 +30,29 @@ def verifyPage(page, num, types):
 		return False
 	return True
 
-def getRoomType(roomid):
-	for types,rooms in DICT_TYPES_ROOM.items():
-		for room in rooms:
-			if roomid == room.roomid:
-				return types
-	return None
+def isEmpty(types):
+	return len(DICT_TYPES_ROOM[types])==0
 
-def quitRoom(types, roomid, userid):
-	room = None
-	for tmp in DICT_TYPES_ROOM[types]:
-		if tmp.roomid == roomid:
-			room = tmp
+def quitRoom(roomid, userid):
+	room = getRoom(roomid)
 	if room == None:
 		return False
 	result = room.removeMember(userid)
 	if not result:
 		return False
 	if room.creator == None:
-		DICT_TYPES_ROOM[types].remove(room)
+		DICT_TYPES_ROOM[room.types].remove(room)
 	return True 
+
+def isCreator(roomid, creatorid):
+	room = getRoom(roomid)
+	if room == None:
+		return False
+	return room.creator.user_id == creatorid
+
+def getRoom(roomid):
+	for types in DICT_TYPES_ROOM: 
+		for room in DICT_TYPES_ROOM[types]:
+			if room.roomid == roomid:
+				return room
+	return None

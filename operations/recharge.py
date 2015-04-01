@@ -11,7 +11,7 @@ INFO_SN = 'securitynumber'
 INFO_AMOUNT = 'amount'
 
 def verify(userid, cardnumber, expire, securitynumber, amount):
-	if not (isinstance(userid,int) and isinstance(cardnumber,unicode) \
+	if not ((isinstance(userid,int) or isinstance(userid,long)) and isinstance(cardnumber,unicode) \
 	and isinstance(expire,unicode) and isinstance(securitynumber,unicode) and isinstance(amount,float)):
 		return False
 	return addAmount(userid,amount,cardnumber)
@@ -28,6 +28,7 @@ def addAmount(userid,amount,cardnumber):
 		session.add(new_transaction)
 		session.commit()
 	except Exception as e:
+		session.rollback()
 		log.warning('recharge: recharge failed;\t'+str(e))
 		return False
 	return True

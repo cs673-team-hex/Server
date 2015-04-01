@@ -4,24 +4,27 @@ import roommanager
 INFO_ROOMID = 'roomid'
 INFO_USERID = 'userid'
 
-def removeUser(roomid, userid):
+def start(roomid, userid):
 	room = roommanager.getRoom(roomid)
 	if room == None:
-		log.warning('quitroom: cannot find room type; roomid:%d'%(roomid))
+		log.warning('startgame: cannot find room type; roomid:%d'%(roomid))
 		return False
-	result = roommanager.quitRoom(roomid,userid)
+	result = room.start()
 	if not result:
-		log.warning('quitroom: user is not in room; roomid:%d, userid:%d'%(roomid,userid))
+		log.warning('startgame: user is not in room; roomid:%d, userid:%d'%(roomid,userid))
 		return False;
-	log.info('quitroom: successful; roomid:%d, userid:%d'%(roomid,userid))
+	log.info('startgame: successful; roomid:%d'%(roomid))
 	return True
 
 def verify(roomid,userid):
 	if not (isinstance(roomid,int) and isinstance(userid,long)):
 		return False
+	if not roommanager.isCreator(roomid, userid):
+		log.warning('startgame: is not creator; roomid:%d, creatorid:%d'%(roomid,userid))
+		return False
 	return True
 
-def quitroom(data):
+def startgame(data):
 	statu = constant.STATUS_SUCCESS
 	result = {}
 	roomid = None
@@ -30,14 +33,14 @@ def quitroom(data):
 		roomid = data[INFO_ROOMID]
 		userid = data[INFO_USERID]
 	else:
-		log.warning('quitroom: missing parameters')
+		log.warning('startgame: missing parameters')
 		statu = constant.STATUS_PARAMETER_UNMATCHED
 		return statu,result
 	if not verify(roomid,userid):
-		log.warning('quitroom: information invalid')
+		log.warning('startgame: information invalid')
 		statu = constant.STATUS_INFORMATION_INVALID
 		return statu,result
-	success = removeUser(roomid,userid)
+	success = start(roomid,userid)
 	if not success:
 		statu = constant.STATUS_OPERATION_FAILED
 		return statu,result

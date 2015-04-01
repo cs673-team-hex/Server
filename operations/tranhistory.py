@@ -27,7 +27,7 @@ def getHistory(userid, page, num):
 		return None
 
 def verify(userid, page, num):
-	if not (isinstance(userid,int) and isinstance(page,int) \
+	if not ((isinstance(userid,int) or isinstance(userid,long)) and isinstance(page,int) \
 	and isinstance(num,int)):
 		return False
 	return True

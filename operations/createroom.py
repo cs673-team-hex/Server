@@ -20,7 +20,7 @@ def getNewRoom(title, number, types, userid, wager):
 		return None
 	roomid = roommanager.createRoom(title, number, types, user, wager=wager)
 	if roomid == None:
-		log.warning('createroom: room is full; type:'+ types)
+		log.warning('createroom: room is full; type:%d'%(types))
 		return None
 	else:
 		log.warning('createroom: successful; roomid:%d'%(roomid))
@@ -28,7 +28,7 @@ def getNewRoom(title, number, types, userid, wager):
 
 def verify(title, number, types, wager, userid):
 	if not (isinstance(title,unicode) and isinstance(number,int) \
-	and isinstance(types,int) and isinstance(wager,int) and isinstance(userid, int)):
+	and isinstance(types,int) and isinstance(wager,int) and isinstance(userid, long)):
 		return False
 	if types not in constant.GAME_TYPES:
 		return False
@@ -37,11 +37,6 @@ def verify(title, number, types, wager, userid):
 def createroom(data):
 	statu = constant.STATUS_SUCCESS
 	result = {}
-	title = None
-	number = None
-	types = None
-	wager = None
-	userid = None
 	if INFO_TITLE in data and INFO_NUM in data and INFO_USERID in data \
 	and INFO_TYPE in data and INFO_WAGER in data:
 		title = data[INFO_TITLE]
