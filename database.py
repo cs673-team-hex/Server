@@ -3,6 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import util.user
 import getpass
+import sys
 
 Base = declarative_base()
 
@@ -14,7 +15,7 @@ while not success:
 		#username = input("Enter username: ")
 		#passwd = getpass.getpass("Enter password: ")
 		engine = create_engine(\
-			"mysql+mysqldb://%s:%s@localhost/virtual_vegas"%("root","hnxthwz2311245",))
+			"mysql+mysqldb://%s:%s@localhost/virtual_vegas"%("root",sys.argv[2],))
 		engine.connect()
 		Session = sessionmaker(bind=engine)
 		session = Session()

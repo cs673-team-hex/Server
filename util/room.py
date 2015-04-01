@@ -50,7 +50,7 @@ class Room:
 			del self.creator
 			self.creator = None
 			return True
-		if member in members:
+		if memberid in selfmembers:
 			members.remove(memberid)
 			return True
 		return False
