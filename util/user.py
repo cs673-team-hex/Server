@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import func
 import database
-import json,log,constant
+import constant
+from blackjack.blackjackplayer import BlackjackPlayer
 
 Base = declarative_base()
 
@@ -16,7 +16,7 @@ RESULT_FACTOR1 = 'factor1'
 RESULT_FACTOR2 = 'factor2'
 RESULT_FACTOR3 = 'factor3'
 
-class User(Base):
+class User(Base, BlackjackPlayer):
 	__tablename__ = 'Users'
 
 	user_id = Column(Integer, primary_key=True)
@@ -29,6 +29,9 @@ class User(Base):
 	factor2 = Column(Float,default=0)
 	factor3 = Column(Float,default=0)
 
+	def updateMoney(self, money):
+		pass
+
 	def toDict(self):
 		result = {}
 		result[RESULT_USERID] = self.user_id
@@ -39,4 +42,11 @@ class User(Base):
 		result[RESULT_FACTOR1] = self.factor1
 		result[RESULT_FACTOR2] = self.factor2
 		result[RESULT_FACTOR3] = self.factor3
+		return result
+
+	def getInfo(self, types, userid):
+		result = {}
+		if types == constant.GAME_TYPE_BLACKJACK:
+			result = BlackjackPlayer.getInfo(self, showall=userid==self.user_id)
+			result[RESULT_USERID] = self.user_id
 		return result

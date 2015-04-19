@@ -12,8 +12,6 @@ engine = None
 session = None
 while not success:
 	try:
-		#username = input("Enter username: ")
-		#passwd = getpass.getpass("Enter password: ")
 		engine = create_engine(\
 			"mysql+mysqldb://%s:%s@localhost/virtual_vegas"%("root",sys.argv[2],))
 		engine.connect()

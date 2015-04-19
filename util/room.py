@@ -1,6 +1,7 @@
-import json,log,constant
-from util.user import User
-from database import session
+from random import shuffle
+import constant
+from util.deck import Deck
+from blackjack.blackjackround import BlackJackRound
 
 RESULT_ROOMID = 'roomid'
 RESULT_TITLE = 'title'
@@ -13,36 +14,30 @@ RESULT_NICKNAME = 'nickname'
 RESULT_USERID = 'userid'
 RESULT_MEMBERS = 'members'
 
-STATUS_WAITING = 1
-STATUS_STARTED = 2
-
 class Room:
-	roomid = None
-	title = None
-	max_number = None
-	types = None
-	wager = None
-	status = None
-	creator = None
-	members = {}
+
+	STATUS_WAITING = 1
+	STATUS_STARTED = 2
 
 	def __init__(self, roomid, title, max_number, types, creator, wager=10):
 		self.roomid = roomid
-		self.status = STATUS_WAITING
+		self.status = Room.STATUS_WAITING
 		self.title = title
 		self.max_number = max_number
 		self.types = types
 		self.wager = wager
 		self.creator = creator
+		self.members = {}
+		self.round = None
 
 	def addMember(self, member):
-		if len(members)>=max_number-1:
+		if len(self.members)>=self.max_number-1:
 			return False
 		if member.user_id == self.creator.user_id:
 			return False
-		if member.user_id in members:
+		if member.user_id in self.members:
 			return False
-		members[member.user_id] = member
+		self.members[member.user_id] = member
 		return True
 
 	def removeMember(self, memberid):
@@ -50,20 +45,35 @@ class Room:
 			del self.creator
 			self.creator = None
 			return True
-		if memberid in selfmembers:
-			members.remove(memberid)
+		if memberid in self.members:
+			self.members.remove(memberid)
 			return True
 		return False
 
 	def start(self):
-		if status == STATUS_WAITING:
-			status = STATUS_STARTED
+		if self.round is not None:
+			self.round.clear()
+			del self.round
+		if self.status != Room.STATUS_WAITING:
+			return False
+		if self.types == constant.GAME_TYPE_BLACKJACK:
+			playerArray = []
+			playerArray.append(self.creator)
+			for userid, member in self.members.items():
+				playerArray.append(member)
+			shuffle(playerArray)
+			i = 0
+			for player in playerArray:
+				player.create(position=i)
+				i+=1
+			self.round = BlackJackRound(playerArray, Deck(), self.end, wager=self.wager)
+			self.status = Room.STATUS_STARTED
 			return True
 		return False
 
 	def end(self):
-		if status == STATUS_STARTED:
-			status = STATUS_WAITING
+		if self.status == Room.STATUS_STARTED:
+			self.status = Room.STATUS_WAITING
 			return True
 		return False
 

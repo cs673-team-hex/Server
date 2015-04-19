@@ -27,8 +27,8 @@ def getNewRoom(title, number, types, userid, wager):
 		return {RESULT_ROOMID:roomid}
 
 def verify(title, number, types, wager, userid):
-	if not (isinstance(title,unicode) and isinstance(number,int) \
-	and isinstance(types,int) and isinstance(wager,int) and isinstance(userid, long)):
+	if not (isinstance(title,unicode) and isinstance(number,int) and isinstance(types,int) \
+		and isinstance(wager,int) and (isinstance(userid, long) or isinstance(userid, int))):
 		return False
 	if types not in constant.GAME_TYPES:
 		return False

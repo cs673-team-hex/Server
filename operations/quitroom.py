@@ -7,7 +7,7 @@ INFO_USERID = 'userid'
 def removeUser(roomid, userid):
 	room = roommanager.getRoom(roomid)
 	if room == None:
-		log.warning('quitroom: cannot find room type; roomid:%d'%(roomid))
+		log.warning('quitroom: cannot find room; roomid:%d'%(roomid))
 		return False
 	result = roommanager.quitRoom(roomid,userid)
 	if not result:

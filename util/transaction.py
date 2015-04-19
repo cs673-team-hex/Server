@@ -30,6 +30,6 @@ class Transaction(Base):
 		result[RESULT_TRANSACTIONID] = self.transaction_id
 		result[RESULT_TIME] = self.time
 		result[RESULT_CARD] = self.card_number
-		result[RESULT_TYPE] = self.user_id
+		result[RESULT_TYPE] = self.types
 		result[RESULT_AMOUNT] = self.amount
 		return result

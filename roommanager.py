@@ -15,12 +15,12 @@ def getRoomList(page, num, types):
 			return DICT_TYPES_ROOM[types][(page-1)*num:]
 	return None
 
-def createRoom(title, max_number, types, creatorid, wager=10):
+def createRoom(title, max_number, types, creator, wager=10):
 	if max_number > MAX_MEMBER_SIZE or max_number<=0:
 		return None
 	if types in DICT_TYPES_ID:
 		roomid = DICT_TYPES_ID[types]*MAX_ROOM_SIZE+len(DICT_TYPES_ROOM[types])
-		room = Room(roomid, title, max_number, types, creatorid, wager=wager)
+		room = Room(roomid, title, max_number, types, creator, wager=wager)
 		DICT_TYPES_ROOM[types].append(room)
 		return roomid
 	return None
@@ -44,11 +44,25 @@ def quitRoom(roomid, userid):
 		DICT_TYPES_ROOM[room.types].remove(room)
 	return True 
 
+def joinRoom(roomid, user):
+	room = getRoom(roomid)
+	if room == None:
+		return False
+	return room.addMember(user)
+
 def isCreator(roomid, creatorid):
 	room = getRoom(roomid)
 	if room == None:
 		return False
 	return room.creator.user_id == creatorid
+
+def isInRoom(roomid, userid):
+	room = getRoom(roomid)
+	if room == None:
+		return False
+	if room.creator.user_id == userid:
+		return True
+	return userid in room.members
 
 def getRoom(roomid):
 	for types in DICT_TYPES_ROOM: 
