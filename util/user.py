@@ -30,7 +30,11 @@ class User(Base, BlackjackPlayer):
 	factor3 = Column(Float,default=0)
 
 	def updateMoney(self, money):
-		pass
+		self.balance += money
+		self.credit += credit
+		session.query(User).filter(User.user_id==userid)\
+		.update({'balance': self.balance,'credit':self.credit}, synchronize_session='fetch')
+		session.commit()
 
 	def toDict(self):
 		result = {}

@@ -46,7 +46,7 @@ class Room:
 			self.creator = None
 			return True
 		if memberid in self.members:
-			self.members.remove(memberid)
+			del self.members[memberid]
 			return True
 		return False
 
@@ -62,7 +62,7 @@ class Room:
 			for userid, member in self.members.items():
 				playerArray.append(member)
 			shuffle(playerArray)
-			i = 0
+			i = 1
 			for player in playerArray:
 				player.create(position=i)
 				i+=1
@@ -100,7 +100,7 @@ class Room:
 		result[RESULT_NICKNAME] = self.creator.nickname
 		result[RESULT_USERID] = self.creator.user_id
 		result[RESULT_MEMBERS] = []
-		for member in self.members:
+		for userid, member in self.members.items():
 			memberdict = {RESULT_NICKNAME:member.nickname,RESULT_USERID:member.user_id}
 			result[RESULT_MEMBERS].append(memberdict)
 		return result

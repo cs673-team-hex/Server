@@ -58,19 +58,20 @@ def handle_data(data_str, connectionuid):
 #print handle_data('{"opt":"recordhistory","info":{"page":1,"num":10,"userid":1}}')
 #print handle_data('{"opt":"createroom","userid":1,"info":{"title":"blackjackgame","number":8,"type":1,"wager":10,"userid":1}}',1)
 #print handle_data('{"opt":"createroom","userid":2,"info":{"title":"blackjackgame","number":8,"type":1,"wager":10,"userid":2}}',2)
-handle_data('{"opt":"createroom","userid":5,"info":{"wager":50,"number":8,"title":"Noob","type":1}}',5)
-print handle_data('{"opt":"joinroom","userid":7,"info":{"roomid":100000}}',7)
-handle_data('{"opt":"startgame","userid":5,"info":{"roomid":100000}}',5)
-handle_data('{"opt":"blackjackroundinfo","userid":5,"info":{"roomid":100000}}',5)
-import random
-for i in range(1,5):
-	operatiion = random.randint(1,4)
-	handle_data('{"opt":"blackjack","userid":5,"info":{"roomid":100000,"opt":%d}}'%(1),5)
-	handle_data('{"opt":"blackjackroundinfo","userid":5,"info":{"roomid":100000}}',5)
-for i in range(1,5):
-	operatiion = random.randint(1,4)
-	print handle_data('{"opt":"blackjack","userid":7,"info":{"roomid":100000,"opt":%d}}'%(1),7)
-	print handle_data('{"opt":"blackjackroundinfo","userid":7,"info":{"roomid":100000}}',7)
+#handle_data('{"opt":"createroom","userid":4,"info":{"wager":50,"number":8,"title":"Noob","type":1}}',4)
+#handle_data('{"opt":"joinroom","userid":7,"info":{"roomid":100000}}',7)
+#handle_data('{"opt":"roominfo","userid":7,"info":{"roomid":100000}}',7)
+#handle_data('{"opt":"startgame","userid":4,"info":{"roomid":100000}}',4)
+#handle_data('{"opt":"blackjackroundinfo","userid":5,"info":{"roomid":100000}}',5)
+#import random
+#for i in range(1,5):
+#	operatiion = random.randint(1,4)
+#	handle_data('{"opt":"blackjack","userid":5,"info":{"roomid":100000,"opt":%d}}'%(1),5)
+#	handle_data('{"opt":"blackjackroundinfo","userid":5,"info":{"roomid":100000}}',5)
+#for i in range(1,5):
+#	operatiion = random.randint(1,4)
+#	print handle_data('{"opt":"blackjack","userid":7,"info":{"roomid":100000,"opt":%d}}'%(1),7)
+#	print handle_data('{"opt":"blackjackroundinfo","userid":7,"info":{"roomid":100000}}',7)
 #print handle_data('{"opt":"roomlist","userid":1,"info":{"page":1,"num":10, "type":1}}',1)
 #print handle_data('{"opt":"quitroom","userid":1,"info":{"roomid":100000,"userid":1}}',1)
 #print handle_data('{"opt":"roomlist","userid":1,"info":{"page":1,"num":10, "type":1}}',1)

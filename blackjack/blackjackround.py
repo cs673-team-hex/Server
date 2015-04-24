@@ -1,5 +1,7 @@
 from blackjack import blackjackAI
 from blackjack import blackjackrule
+from blackjack import blackjackplayer
+import util.user
 
 class BlackJackRound:
 
@@ -9,11 +11,12 @@ class BlackJackRound:
         self.wager = wager
         self.index = 0
         self.currentPlayer = self.playerArray[0]
-        self.AICardArray = []
+        self.AIPlayer = blackjackplayer.BlackjackPlayer()
+        self.AIPlayer.create()
         self.endCallBack = endCallBack
-        self.AICardArray.append(deck.getTopCard())
-        self.AICardArray.append(deck.getTopCard())
-        self.sendFirstTwoCards(self.currentPlayer)
+        self.sendFirstTwoCards(self.AIPlayer)
+        for player in playerArray:
+            self.sendFirstTwoCards(player)
 
     def sendFirstTwoCards(self, player):
         player.addCard(self.cardDeck.getTopCard(), hide=True)
@@ -40,7 +43,6 @@ class BlackJackRound:
         else:
             self.index += 1
             self.currentPlayer = self.playerArray[self.index]
-            self.sendFirstTwoCards(self.currentPlayer)
         return True
 
     def playerHit(self, userid):
@@ -59,27 +61,28 @@ class BlackJackRound:
         return False
 
     def AIPhase(self):
-        while blackjackrule.getMaxValueOfHand(self.AICardArray) < 17:
-            self.AICardArray.append(self.cardDeck.getTopCard())
-            if blackjackrule.isBust(self.AICardArray):
+        while blackjackrule.getMaxValueOfHand(self.AIPlayer.getCards()) < 17:
+            self.AIPlayer.addCard(self.cardDeck.getTopCard())
+            if blackjackrule.isBust(self.AIPlayer.getCards()):
                 self.roundEndByAI()
                 return
-        while blackjackAI.doMakeDecision(self.cardDeck, self.AICardArray, self.currentPlayer.getCards()):
-            self.AICardArray.append(self.cardDeck.getTopCard())
-            if blackjackrule.isBust(self.AICardArray):
+        while blackjackAI.doMakeDecision(self.cardDeck, self.AIPlayer.getCards(), self.currentPlayer.getCards()):
+            self.AIPlayer.addCard(self.cardDeck.getTopCard())
+            if blackjackrule.isBust(self.AIPlayer.getCards()):
                 self.roundEndByAI()
                 return
         self.roundEndByAI()
 
     def roundEndByAI(self):
         self.moneyAffairs()
+        self.AIPlayer.isStand = True
         self.endCallBack()
 
     def moneyAffairs(self):
         for player in self.playerArray:
             if player.isSurrend:
                 player.updateMoney(-self.wager / 2)
-            elif blackjackrule.getBlackJackResult(player.getCards(), self.AICardArray) > 0:
+            elif blackjackrule.getBlackJackResult(player.getCards(), self.AIPlayer.getCards()) > 0:
                 if player.isDouble:
                     player.updateMoney(-self.wager * 2)
                 else:
@@ -94,3 +97,9 @@ class BlackJackRound:
         for player in self.playerArray:
             player.reset()
         del self.cardDeck
+
+    def getAIInfo(self, showall=False):
+        result = {}
+        result = self.AIPlayer.getInfo(showall=showall)
+        result[util.user.RESULT_USERID] = 0
+        return result
