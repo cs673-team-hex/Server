@@ -31,6 +31,8 @@ class Room:
 		self.round = None
 
 	def addMember(self, member):
+		if self.status != Room.STATUS_WAITING:
+			return False
 		if len(self.members)>=self.max_number-1:
 			return False
 		if member.user_id == self.creator.user_id:

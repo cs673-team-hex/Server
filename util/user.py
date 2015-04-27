@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
-import database
+from database import session
 import constant
 from blackjack.blackjackplayer import BlackjackPlayer
 
@@ -31,8 +31,8 @@ class User(Base, BlackjackPlayer):
 
 	def updateMoney(self, money):
 		self.balance += money
-		self.credit += credit
-		session.query(User).filter(User.user_id==userid)\
+		self.credit += money
+		session.query(User).filter(User.user_id==self.user_id)\
 		.update({'balance': self.balance,'credit':self.credit}, synchronize_session='fetch')
 		session.commit()
 
@@ -41,7 +41,7 @@ class User(Base, BlackjackPlayer):
 		result[RESULT_USERID] = self.user_id
 		result[RESULT_NICKNAME] = self.nickname
 		result[RESULT_CREDIT] = self.credit
-		result[RESULT_RANK] = database.session.query(User).filter(User.credit > self.credit).count()+1
+		result[RESULT_RANK] = session.query(User).filter(User.credit > self.credit).count()+1
 		result[RESULT_BALANCE] = self.balance
 		result[RESULT_FACTOR1] = self.factor1
 		result[RESULT_FACTOR2] = self.factor2

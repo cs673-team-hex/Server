@@ -10,14 +10,6 @@ class BlackjackPlayer:
             newCardArray.append(card)
         return newCardArray
 
-    def printCardInHand(self):
-        sb = ""
-        for card in self.cardArray:
-            sb = sb+card.printCard()+" "
-        sb = sb+"Total Num: "
-        sb = sb+str(BlackJackRule.GetMaxValueOfHand(cardArray=self.cardArray))
-        return sb
-
     def addCard(self, cardNewCard, hide=False):
         self.cardArray.append((cardNewCard,hide))
 
@@ -25,6 +17,8 @@ class BlackjackPlayer:
         self.isDouble = False
         self.isSurrend = False
         self.isStand = False
+        self.isHit = False
+        self.isStart = False
         if self.cardArray is not None:
             del self.cardArray[:]
 
@@ -32,17 +26,23 @@ class BlackjackPlayer:
         self.isDouble = False
         self.isSurrend = False
         self.isStand = False
+        self.isHit = False
+        self.isStart = False
         self.position = position
         self.cardArray = []
 
     def getStatus(self):
         if self.isSurrend:
-            return 4
+            return 5
         if self.isDouble:
-            return 3
+            return 4
         if self.isStand:
+            return 3
+        if self.isHit:
             return 2
-        return 1
+        if self.isStart:
+            return 1
+        return 0
 
     def getInfo(self, showall=False):
         result = {}

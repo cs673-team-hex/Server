@@ -11,6 +11,7 @@ class BlackJackRound:
         self.wager = wager
         self.index = 0
         self.currentPlayer = self.playerArray[0]
+        self.currentPlayer.isStart = True
         self.AIPlayer = blackjackplayer.BlackjackPlayer()
         self.AIPlayer.create()
         self.endCallBack = endCallBack
@@ -43,6 +44,7 @@ class BlackJackRound:
         else:
             self.index += 1
             self.currentPlayer = self.playerArray[self.index]
+            self.currentPlayer.isStart = True
         return True
 
     def playerHit(self, userid):
@@ -50,6 +52,7 @@ class BlackJackRound:
             return False
         if not (self.currentPlayer.isStand or self.currentPlayer.isSurrend):
             self.currentPlayer.addCard(self.cardDeck.getTopCard())
+            self.isHit = True
             #  Check GameStatus
             if blackjackrule.isBust(self.currentPlayer.getCards()):
                 return self.playerStand(userid)

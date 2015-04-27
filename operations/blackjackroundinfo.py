@@ -11,6 +11,9 @@ def getRoundInfo(roomid,userid):
 	if room == None:
 		log.warning('blackjackroundinfo: cannot find room; roomid:%d'%(roomid))
 		return None
+	if room.round == None:
+		log.warning('blackjackroundinfo: there is no round in room; roomid:%d'%(roomid))
+		return None
 	membersInfo = [room.round.getAIInfo(showall=room.status==room.STATUS_WAITING),room.creator.getInfo(room.types, userid)]
 	for cuserid,member in room.members.items():
 		membersInfo.append(member.getInfo(room.types, userid))
