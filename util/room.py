@@ -44,9 +44,12 @@ class Room:
 
 	def removeMember(self, memberid):
 		if memberid == self.creator.user_id:
-			del self.creator
-			self.creator = None
-			return True
+			if len(self.members)>0:
+				return False
+			else:
+				del self.creator
+				self.creator = None
+				return True
 		if memberid in self.members:
 			del self.members[memberid]
 			return True
