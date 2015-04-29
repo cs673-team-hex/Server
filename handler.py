@@ -72,6 +72,6 @@ def handle_data(data_str, connectionuid):
 #	operatiion = random.randint(1,4)
 #	print handle_data('{"opt":"blackjack","userid":7,"info":{"roomid":100000,"opt":%d}}'%(1),7)
 #	print handle_data('{"opt":"blackjackroundinfo","userid":7,"info":{"roomid":100000}}',7)
-#print handle_data('{"opt":"roomlist","userid":1,"info":{"page":1,"num":10, "type":1}}',1)
+#print handle_data('{"opt":"roomlist","userid":4,"info":{"page":1,"num":10, "type":1}}',4)
 #print handle_data('{"opt":"quitroom","userid":1,"info":{"roomid":100000,"userid":1}}',1)
 #print handle_data('{"opt":"roomlist","userid":1,"info":{"page":1,"num":10, "type":1}}',1)

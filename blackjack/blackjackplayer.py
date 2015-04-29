@@ -4,6 +4,14 @@ RESULT_CARDS = "cards"
 
 class BlackjackPlayer:
 
+    STATUS_WAITING = 0;
+    STATUS_STARTED = 1;
+    STATUS_HITTED = 2;
+    STATUS_STAND = 3;
+    STATUS_DOUBLE = 4;
+    STATUS_SURRENDER = 5;
+
+
     def getCards(self):
         newCardArray = []
         for card,hide in self.cardArray:
@@ -15,7 +23,7 @@ class BlackjackPlayer:
 
     def reset(self):
         self.isDouble = False
-        self.isSurrend = False
+        self.isSurrender = False
         self.isStand = False
         self.isHit = False
         self.isStart = False
@@ -24,7 +32,7 @@ class BlackjackPlayer:
 
     def create(self, position=0):
         self.isDouble = False
-        self.isSurrend = False
+        self.isSurrender = False
         self.isStand = False
         self.isHit = False
         self.isStart = False
@@ -32,17 +40,17 @@ class BlackjackPlayer:
         self.cardArray = []
 
     def getStatus(self):
-        if self.isSurrend:
-            return 5
+        if self.isSurrender:
+            return BlackjackPlayer.STATUS_SURRENDER
         if self.isDouble:
-            return 4
+            return BlackjackPlayer.STATUS_DOUBLE
         if self.isStand:
-            return 3
+            return BlackjackPlayer.STATUS_STAND
         if self.isHit:
-            return 2
+            return BlackjackPlayer.STATUS_HITTED
         if self.isStart:
-            return 1
-        return 0
+            return BlackjackPlayer.STATUS_STARTED
+        return BlackjackPlayer.STATUS_WAITING
 
     def getInfo(self, showall=False):
         result = {}

@@ -53,11 +53,11 @@ class Room:
 		return False
 
 	def start(self):
-		if self.round is not None:
-			self.round.clear()
-			del self.round
 		if self.status != Room.STATUS_WAITING:
 			return False
+		if hasattr(self,'round') and self.round is not None:
+			self.round.clear()
+			del self.round
 		if self.types == constant.GAME_TYPE_BLACKJACK:
 			playerArray = []
 			playerArray.append(self.creator)

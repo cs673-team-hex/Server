@@ -38,7 +38,7 @@ ctx.use_certificate_file(os.path.join(dir, 'server.cert'))
 server = SSL.Connection(ctx, socket.socket(socket.AF_INET, socket.SOCK_STREAM))
 server.bind(('', int(sys.argv[1])))
 server.listen(3) 
-server.setblocking(0)
+server.setblocking(1)
 
 clients = {}
 writers = {}

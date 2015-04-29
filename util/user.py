@@ -41,12 +41,15 @@ class User(Base, BlackjackPlayer):
 		result[RESULT_USERID] = self.user_id
 		result[RESULT_NICKNAME] = self.nickname
 		result[RESULT_CREDIT] = self.credit
-		result[RESULT_RANK] = session.query(User).filter(User.credit > self.credit).count()+1
+		result[RESULT_RANK] = self.getRank()
 		result[RESULT_BALANCE] = self.balance
 		result[RESULT_FACTOR1] = self.factor1
 		result[RESULT_FACTOR2] = self.factor2
 		result[RESULT_FACTOR3] = self.factor3
 		return result
+
+	def getRank(self):
+		return session.query(User).filter(User.credit > self.credit).count()+1
 
 	def getInfo(self, types, userid):
 		result = {}

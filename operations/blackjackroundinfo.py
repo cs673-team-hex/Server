@@ -11,12 +11,23 @@ def getRoundInfo(roomid,userid):
 	if room == None:
 		log.warning('blackjackroundinfo: cannot find room; roomid:%d'%(roomid))
 		return None
+	if not hasattr(room,'round'):
+		log.warning('blackjackroundinfo: there is no attribute in room; roomid:%d'%(roomid))
+		return None
 	if room.round == None:
 		log.warning('blackjackroundinfo: there is no round in room; roomid:%d'%(roomid))
 		return None
-	membersInfo = [room.round.getAIInfo(showall=room.status==room.STATUS_WAITING),room.creator.getInfo(room.types, userid)]
+	showall = room.status==room.STATUS_WAITING
+	membersInfo = [room.round.getAIInfo(showall=showall)]
+	if(showall):
+		membersInfo.append(room.creator.getInfo(room.types, room.creator.user_id))
+	else:
+		membersInfo.append(room.creator.getInfo(room.types, userid))
 	for cuserid,member in room.members.items():
-		membersInfo.append(member.getInfo(room.types, userid))
+		if(showall):
+			membersInfo.append(member.getInfo(room.types, member.user_id))
+		else:	
+			membersInfo.append(member.getInfo(room.types, userid))
 	log.info('blackjackroundinfo: successful; roomid:%d, userid:%d'%(roomid,userid))
 	return {RESULT_MEMBERS:membersInfo,RESULT_WAGER:room.wager}
 

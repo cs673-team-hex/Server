@@ -2,7 +2,7 @@ import constant
 from util.room import Room
 
 MAX_ROOM_SIZE = 100000
-MAX_MEMBER_SIZE = 8
+MAX_MEMBER_SIZE = 4
 
 DICT_TYPES_ID = {constant.GAME_TYPE_BLACKJACK:1}
 DICT_TYPES_ROOM = {constant.GAME_TYPE_BLACKJACK:[]}
