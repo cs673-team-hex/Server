@@ -20,11 +20,11 @@ def getHistory(userid, page, num):
 		if page*num <= len(histories):
 			return toDict(histories[(page-1)*num:page*num])
 		elif (page-1)*num >= len(histories):
-			return None
+			return {RESULT_HISTORYIES:[]}
 		else:
 			return toDict(histories[0:])
 	except (NoResultFound) as e:
-		return None
+		return {RESULT_HISTORYIES:[]}
 
 def verify(userid, page, num):
 	if not ((isinstance(userid,int) or isinstance(userid,long)) and isinstance(page,int) \
