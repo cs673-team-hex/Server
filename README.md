@@ -24,7 +24,7 @@ Set up
 
   The username must be "root"
   
-Start server
+Usage
 ============
 
 Run command as follow:
